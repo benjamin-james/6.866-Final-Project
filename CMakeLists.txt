@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8)
+project( optical_flow )
+if (NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
+
+find_package( OpenCV REQUIRED )
+find_package( OpenMP REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} ${OpenMP_INCLUDE_DIRS} )
+add_executable(optical_flow src/main.cpp )
+target_link_libraries( optical_flow ${OpenCV_LIBS} ${OpenMP_LIBS})
